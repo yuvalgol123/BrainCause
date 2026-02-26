@@ -109,7 +109,7 @@
 <body>
 
 <header class="hero">
-  <h1 class="title">ImpMIA: Leveraging Implicit Bias for Membership Inference under Realistic Scenarios</h1>
+  <h1 class="title">ImpMIA: Leveraging Implicit Bias for Membership Inference Attack</h1>
 
   <p class="authors">
     <a href="mailto:yuval.golbari@weizmann.ac.il">Yuval Golbari</a><sup>*</sup> ·
@@ -132,28 +132,16 @@
     <figure class="img-well">
     </figure>
 <p>
-  Determining which data samples were used to train a model&mdash;known as
-  <em>Membership Inference Attack (MIA)</em>&mdash;is a well-studied and important
-  problem with implications for data privacy. Black-box methods presume access only
-  to the model’s outputs and often rely on training auxiliary reference models.
-  While they show strong empirical performance, they depend on assumptions that
-  rarely hold in real-world settings: (i) the attacker knows the training
-  hyperparameters; (ii) all available non-training samples come from the same
-  distribution as the training data; and (iii) the fraction of training data in the
-  evaluation set is known. In this work, we demonstrate that removing these
-  assumptions leads to a significant drop in black-box performance. We introduce
-  <strong>ImpMIA</strong>, a membership inference attack that exploits the
-  <strong>implicit bias</strong> of neural networks, removing the need for any
-  reference models and their assumptions. <strong>ImpMIA is a white-box attack</strong>
-  &ndash; a setting that assumes access to model weights and is increasingly
-  realistic given many publicly available models (e.g., via Hugging Face). Building
-  on maximum-margin implicit-bias theory, ImpMIA uses the
-  <strong>Karush&ndash;Kuhn&ndash;Tucker (KKT)</strong> optimality conditions to
-  identify training samples by finding those whose gradients most strongly
-  reconstruct the trained model’s parameters. As a result, ImpMIA achieves
-  state-of-the-art performance compared to both black- and white-box attacks in
-  realistic settings where only the model weights and a superset of the training
-  data are available.
+Determining which data samples were used to train a model, known as Membership Inference Attack (MIA), 
+is a well-studied and important problem with implications on data privacy. 
+SotA methods (which are black-box attacks) rely on training many auxiliary reference models to imitate the behavior of the attacked model.
+As such, they rely on assumptions which rarely hold in real-world settings: (i) the attacker knows the training hyperparameters; (ii) all available non-training samples come from the same distribution as the training data; 
+and (iii) the fraction of training data in the evaluation set is known. We show that removing these assumptions significantly harms the performance of black-box attacks. 
+We introduce ImpMIA, a Membership Inference Attack that exploits the Implicit Bias of neural networks. 
+Building on the maximum-margin implicit bias theory, ImpMIA uses the Karush-Kuhn-Tucker (KKT) optimality conditions to identify training samples -- those whose gradients most strongly reconstruct the trained model's parameters. 
+Our approach is optimization-based, and requires NO training of reference-models, thus removing the need for any knowledge/assumptions regarding the attacked model's training procedure.
+While ImpMIA is a white-box attack (a setting which assumes access to model weights), this is becoming increasingly realistic given that many models are publicly available (e.g., via Hugging Face).
+ImpMIA achieves SotA performance compared to both black and white box attacks in settings where only the model weights are known, and a superset of the training data is available.
 </p>
   </section>
 
@@ -271,21 +259,36 @@
 
   <div class="wrap">
     <div class="text">
-      <h2 class="section-title">Effect of Assumption Removal</h2>
+      <h2 class="section-title">TPR–FPR Curve (No-Auxiliary-Knowledge, CIFAR-10)</h2>
+
       <p>
-        Performance of the best prior method (LiRA) and our method (ImpMIA) under the progressive removal of assumptions on CINIC-10.
+        ROC-style evaluation comparing <strong>ImpMIA</strong> to leading baselines
+        (LiRA, RMIA, Attack-R) in the <em>No-Auxiliary-Knowledge</em> setting.
       </p>
+
       <p>
-        Y-axis: TPR at 0% FPR. X-axis: assumptions removed in sequence — Known training configuration → Matched non-member distribution → Known member ratio → All removed.
+        This setting jointly removes common reference-model assumptions:
+        <strong>(i)</strong> unknown training configuration,
+        <strong>(ii)</strong> distribution shift in the candidate pool,
+        and <strong>(iii)</strong> unknown member ratio.
       </p>
+
       <p>
-        As assumptions are removed, LiRA performance drops sharply, while <strong>ImpMIA</strong> remains stable, showing minimal dependence on these assumptions.
+        <strong>X-axis:</strong> False positive rate (FPR, log scale).
+        <strong>Y-axis:</strong> True positive rate (TPR, log scale).
+        The dashed diagonal indicates random guessing.
+      </p>
+
+      <p>
+        <strong>ImpMIA</strong> achieves consistently higher TPR in the low-FPR regime,
+        demonstrating stronger membership detection under realistic conditions where
+        reference-model attacks degrade.
       </p>
     </div>
 
     <figure class="img-well plot">
-      <img class="img" src="figures/assumption_removal_curve.png"
-           alt="CINIC-10: Performance of LiRA and ImpMIA under progressive assumption removal">
+      <img class="img" src="figures/curve_cifar10.png"
+           alt="TPR–FPR curve on CIFAR-10 in the No-Auxiliary-Knowledge setting">
     </figure>
   </div>
 </section>
@@ -296,17 +299,18 @@
     <h2 class="section-title">BibTeX</h2>
     <figure></figure>
     <div class="bibtex">
-@article{golbari2025impMIA,
-  title   = {ImpMIA: Leveraging Implicit Bias for Membership Inference under Realistic Scenarios},
+@article{golbari2026impMIA,
+  title   = {ImpMIA: Leveraging Implicit Bias for Membership Inference Attack},
   author  = {Golbari, Yuval and Wasserman, Navve and Vardi, Gal and Irani, Michal},
-  journal = {arXiv preprint arXiv:2510.10625},
-  year    = {2025}
+  journal = {arXiv preprint arXiv:2510.10625v3},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2510.10625v3}
 }
     </div>
   </section>
 
   <section style="max-width:var(--max); margin:24px auto 40px; padding:0 16px; color:var(--muted); text-align:center;">
-    © 2025 ImpMIA Authors.
+    © 2026 ImpMIA Authors.
   </section>
 
 </body>
