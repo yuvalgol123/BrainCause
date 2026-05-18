@@ -39,6 +39,8 @@
     background: #fff;
     font-family: "Noto Sans", Arial, sans-serif;
     line-height: 1.6;
+    text-align: justify;
+    text-justify: inter-word;
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; }
@@ -92,6 +94,39 @@
   .affiliation span {
     display: inline-block;
     margin: 0 8px;
+  }
+  .affiliation-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(22px, 5vw, 56px);
+    margin: 14px auto 0;
+    text-align: center;
+  }
+  .affiliation-logo {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .affiliation-number {
+    color: #000;
+    font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
+    font-size: clamp(1.08rem, 2.2vw, 1.35rem);
+    font-weight: 500;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+  .affiliation-logos img {
+    display: block;
+    width: auto;
+    object-fit: contain;
+  }
+  .weizmann-logo {
+    height: clamp(36px, 4.6vw, 52px);
+  }
+  .mit-logo {
+    height: clamp(42px, 5.4vw, 58px);
   }
   .author-link {
     color: #2874b8;
@@ -188,7 +223,7 @@
     font-family: "Noto Sans", Arial, sans-serif;
     font-size: clamp(1.1rem, 2vw, 1.35rem);
     font-weight: 800;
-    text-align: left;
+    text-align: justify;
   }
   .teaser-heading strong {
     color: var(--blue);
@@ -223,7 +258,7 @@
   }
   .teaser-brain-card {
     padding: 8px;
-    text-align: center;
+    text-align: justify;
   }
   .teaser-panel {
     padding: 14px;
@@ -340,7 +375,7 @@
     border: 1.5px solid #4f78c1;
     border-radius: 5px;
     background: #f7fbff;
-    text-align: center;
+    text-align: justify;
     font-family: "Times New Roman", Times, serif;
     font-size: clamp(0.5rem, 1.55vw, 1.22rem);
     font-weight: 700;
@@ -364,11 +399,11 @@
   .slide-subhead {
     top: 40.5%;
     font-size: clamp(0.42rem, 1.18vw, 0.95rem);
-    text-align: center;
+    text-align: justify;
   }
   .slide-small {
     font-size: clamp(0.38rem, 0.98vw, 0.78rem);
-    text-align: center;
+    text-align: justify;
     font-weight: 500;
   }
   .slide-img,
@@ -406,7 +441,7 @@
     font-family: "Times New Roman", Times, serif;
     font-size: clamp(0.38rem, 1.02vw, 0.82rem);
     line-height: 1.05;
-    text-align: center;
+    text-align: justify;
   }
   .slide-score {
     color: #e42d25;
@@ -458,8 +493,9 @@
     border-top: 1px solid var(--line);
   }
   h2 {
-    margin: 0 0 18px;
-    text-align: center;
+    max-width: 980px;
+    margin: 0 auto 18px;
+    text-align: justify;
     font-family: "Noto Sans", Arial, sans-serif;
     font-size: clamp(1.62rem, 3.1vw, 2.35rem);
     line-height: 1.14;
@@ -475,7 +511,7 @@
     max-width: 980px;
     margin: 0 auto 24px;
     color: #333;
-    text-align: left;
+    text-align: justify;
     font-size: 1.08rem;
   }
   .abstract-section {
@@ -485,7 +521,7 @@
     max-width: 980px;
     margin: 0 auto;
     color: #30343a;
-    text-align: left;
+    text-align: justify;
     font-size: 1.04rem;
     line-height: 1.72;
   }
@@ -577,7 +613,7 @@
     max-width: 900px;
     margin: 2px auto 24px;
     color: #30343a;
-    text-align: center;
+    text-align: justify;
     font-size: clamp(1rem, 1.7vw, 1.18rem);
     line-height: 1.65;
   }
@@ -585,7 +621,7 @@
     padding: 22px 0 36px;
     border-top: 1px solid var(--line);
     color: #666;
-    text-align: center;
+    text-align: justify;
     font-size: 0.92rem;
   }
   .bibtex-box {
@@ -665,7 +701,16 @@
           <a class="author-link" href="#">Tamar Rott Shaham</a><sup>2</sup>
         </p>
         <p class="equal-note">* Equal contribution</p>
-        <p class="affiliation"><span><sup>1</sup>Weizmann Institute of Science</span><span><sup>2</sup>Massachusetts Institute of Technology</span></p>
+        <div class="affiliation-logos" aria-label="Affiliations">
+          <span class="affiliation-logo">
+            <span class="affiliation-number">1</span>
+            <img class="weizmann-logo" src="assets/logos/weizmann-logo.svg" alt="Weizmann Institute of Science" />
+          </span>
+          <span class="affiliation-logo">
+            <span class="affiliation-number">2</span>
+            <img class="mit-logo" src="assets/logos/mit-logo.svg" alt="Massachusetts Institute of Technology" />
+          </span>
+        </div>
         <div class="button-row">
           <a class="button disabled" href="#" aria-disabled="true">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l5 5v15H6V2Zm7 1.8V8h4.2L13 3.8ZM8 12v1.6h8V12H8Zm0 3.2v1.6h8v-1.6H8Zm0 3.2V20h5v-1.6H8Z"/></svg>
@@ -1035,10 +1080,6 @@ representations despite individual variability in cortical organization.</p>
       ctx.globalAlpha = p.heat > 0 ? 0.32 + p.heat * 0.54 : 0.34;
       ctx.arc(p.x, p.y, p.size * pulse, 0, Math.PI * 2);
       ctx.fill();
-      if (p.heat > 0.42) {
-        ctx.globalAlpha = 0.1 * p.heat;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.size * 4.6, 0, Math.PI * 2); ctx.fill();
-      }
     }
     }
     const activationProjected = projectBrain("activation", width * 0.3);
