@@ -176,6 +176,7 @@
     font-weight: 700;
     line-height: 1.38;
   }
+  /*
   .brain-showcase {
     position: relative;
     overflow: hidden;
@@ -194,6 +195,7 @@
     display: block;
     cursor: grab;
   }
+  */
   .teaser-wide {
     width: min(1180px, calc(100% - 32px));
     margin: 20px auto 42px;
@@ -642,8 +644,10 @@
     white-space: pre;
   }
   @media (max-width: 800px) {
+    /*
     .brain-showcase { min-height: 390px; }
     #brain-canvas { height: 390px; }
+    */
     .teaser-wide { margin-top: 14px; }
     .teaser-top,
     .teaser-bottom {
@@ -716,7 +720,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l5 5v15H6V2Zm7 1.8V8h4.2L13 3.8ZM8 12v1.6h8V12H8Zm0 3.2v1.6h8v-1.6H8Zm0 3.2V20h5v-1.6H8Z"/></svg>
             Paper
           </a>
-          <a class="button disabled" href="#" aria-disabled="true">
+          <a class="button" href="https://huggingface.co/datasets/BrainCause/Concept_Targeted_Causal_Images" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C7.58 3 4 4.34 4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6c0-1.66-3.58-3-8-3Zm0 2c3.87 0 6 .96 6 1s-2.13 1-6 1-6-.96-6-1 2.13-1 6-1ZM6 9.1c1.45.59 3.55.9 6 .9s4.55-.31 6-.9V12c0 .04-2.13 1-6 1s-6-.96-6-1V9.1Zm0 6c1.45.59 3.55.9 6 .9s4.55-.31 6-.9V18c0 .04-2.13 1-6 1s-6-.96-6-1v-2.9Z"/></svg>
             Data
           </a>
@@ -733,15 +737,21 @@
         <p class="abstract-text"><strong>Overview.</strong> Identifying which brain regions represent a visual concept in the human brain is a central challenge in neuroscience. Strong activation alone does not establish that a region represents the concept itself, as responses may instead be driven by correlated visual or semantic cues. We introduce BrainCause, an automated framework that combines generative and brain models to synthesize controlled stimuli and validate neural representations through targeted causal testing. Given a query specifying a concept of interest, our framework constructs targeted stimulus sets comprising concept images, counterfactual edits that remove the target concept while preserving other image content, and images with candidate correlated distractors. Critically, we show that without causal validation, a large fraction of localizations would be false positives, confirming that activation alone is insufficient evidence of representation. 
           BrainCause returns validated candidate representations and proposes follow-up fMRI experiments to further test or extend its discoveries. Our approach successfully recovers known functional localizations and identifies new candidate representations across dozens of concepts, validated on both predicted and measured fMRI data.</p>
       </div>
+      <!--
       <div class="brain-showcase" aria-label="Interactive 3D brain visualization">
         <canvas id="brain-canvas"></canvas>
       </div>
+      -->
     </section>
 
     <section id="teaser" class="figure-stack">
       <div class="container">
+        <!--
         <h2>Is High Activation Enough?</h2>
+        -->
+        <!--
         <p class="lead">Existing approaches often localize functional regions using category contrasts, identifying voxels or regions that respond more strongly to a target category than to other categories. Yet activation alone does not establish that the region represents the concept itself, since responses may instead be driven by correlated visual or semantic cues. BrainCause therefore constructs targeted stimulus sets that isolate the concept from correlated visual and semantic factors, including counterfactual edits that remove the target concept while preserving other image content.</p>
+        -->
       </div>
       <div class="figure-card">
         <img src="assets/final-ppt-media/teaser.png" alt="BrainCause teaser comparing activation-focused discovery with causal discovery and evaluation" />
@@ -836,6 +846,8 @@ representations despite individual variability in cortical organization.</p>
   <footer class="footer"><div class="container">BrainCause project page.</div></footer>
 
 <script>
+/*
+3D brain visualization disabled.
 (() => {
   const canvas = document.getElementById("brain-canvas");
   const ctx = canvas.getContext("2d", { alpha: true });
@@ -1141,6 +1153,7 @@ representations despite individual variability in cortical organization.</p>
   resize();
   requestAnimationFrame(draw);
 })();
+*/
 </script>
 </body>
 </html>
