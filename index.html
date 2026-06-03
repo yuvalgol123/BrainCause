@@ -604,8 +604,10 @@
       linear-gradient(135deg, rgba(245, 248, 252, 0.92), rgba(255, 255, 255, 0.78));
     box-shadow: 0 18px 54px rgba(17, 32, 52, 0.11);
   }
-  .figure-card img {
+  .figure-card img,
+  .figure-card video {
     width: 100%;
+    display: block;
     border-radius: 12px;
     background: #fff;
     border: 1px solid rgba(20, 31, 45, 0.1);
@@ -754,7 +756,16 @@
         -->
       </div>
       <div class="figure-card">
-        <img src="assets/final-ppt-media/teaser.png" alt="BrainCause teaser comparing activation-focused discovery with causal discovery and evaluation" />
+        <video
+          controls
+          muted
+          playsinline
+          preload="metadata"
+          aria-label="BrainCause teaser video comparing activation-focused discovery with causal discovery and evaluation"
+        >
+          <source src="assets/gifs.mp4" type="video/mp4" />
+          <img src="assets/final-ppt-media/teaser.png" alt="BrainCause teaser comparing activation-focused discovery with causal discovery and evaluation" />
+        </video>
       </div>
     </section>
 
